@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - tilePosition
+  - GameManager
+  - black
+  - white
   layers:
   - Default
   - TransparentFX

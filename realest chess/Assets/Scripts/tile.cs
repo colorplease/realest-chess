@@ -11,6 +11,7 @@ public class tile : MonoBehaviour, IPointerDownHandler
     public GameObject position;
     public GameObject pieceOnTop;
     public bool isOccupied;
+    public Vector2 location;
 
     void Start()
     {

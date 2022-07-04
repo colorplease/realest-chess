@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] tiles;
+    public GameObject[,] tiles;
     public piece[] whitePieces;
     public piece[] blackPieces;
     public GameObject testPiece;
@@ -20,8 +20,9 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R))
         {
-            var random = Random.Range(0, tiles.Length);
-             GameObject found = new List<GameObject>(GameObject.FindGameObjectsWithTag("tilePosition")).Find(g => g.transform.IsChildOf(tiles[random].transform));
+            var randomX = Random.Range(0, 8);
+            var randomY = Random.Range(0, 8);
+             GameObject found = new List<GameObject>(GameObject.FindGameObjectsWithTag("tilePosition")).Find(g => g.transform.IsChildOf(tiles[randomX, randomY].transform));
             GameObject testPieceObject = Instantiate(testPiece, found.transform.position, Quaternion.identity);
             GetAllPieces();
         }

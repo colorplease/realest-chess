@@ -34,6 +34,8 @@ public class tile : MonoBehaviour, IPointerDownHandler
         if(other.tag == "black" || other.tag == "white")
         {
             isOccupied = true;
+            pieceOnTop = other.gameObject;
+            pieceOnTop.GetComponent<piece>().pos = location;
         }
     }
 
@@ -42,13 +44,21 @@ public class tile : MonoBehaviour, IPointerDownHandler
         if(other.tag == "black" || other.tag == "white")
         {
             isOccupied = false;
+            pieceOnTop = null;
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        gameManager.SelectTile(position);
-        Select();
+        if(!selected)
+        {
+            gameManager.SelectTile(position);
+            Select();
+        }
+        else
+        {
+            Deselect();
+        }
     }
 
     public void Select()

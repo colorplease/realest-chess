@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 602277454089434074}
   - component: {fileID: -1961789130165862990}
   - component: {fileID: 5334050277491864092}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pawn
   m_TagString: black
   m_Icon: {fileID: 0}
@@ -125,5 +125,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.22, y: 0.43}
+  m_Size: {x: 0.01, y: 0.01}
   m_EdgeRadius: 0

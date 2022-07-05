@@ -31,7 +31,18 @@ public class tile : MonoBehaviour, IPointerDownHandler
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if(other.tag == "black" || other.tag == "white")
+        {
+            isOccupied = true;
+        }
+    }
+
+     void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.tag == "black" || other.tag == "white")
+        {
+            isOccupied = false;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)

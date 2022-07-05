@@ -8,6 +8,7 @@ TagManager:
   - GameManager
   - black
   - white
+  - tile
   layers:
   - Default
   - TransparentFX

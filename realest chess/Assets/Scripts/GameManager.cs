@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public piece[] blackPieces;
     public GameObject testPiece;
     public GameObject currentSelectedTile;
+    public int tileCountX, tileCountY;
+    [SerializeField]GameObject[] tileObjects;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +22,24 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R))
         {
+           SpawnPiece();
+        }
+    }
+
+    void SpawnPiece()
+    {
+         GetAllTiles();
             var randomX = Random.Range(0, 8);
             var randomY = Random.Range(0, 8);
-             GameObject found = new List<GameObject>(GameObject.FindGameObjectsWithTag("tilePosition")).Find(g => g.transform.IsChildOf(tiles[randomX, randomY].transform));
-            GameObject testPieceObject = Instantiate(testPiece, found.transform.position, Quaternion.identity);
+            if(tiles[randomX, randomY].GetComponent<tile>().isOccupied)
+            {
+                SpawnPiece();
+            }
+            else
+            {
+                GameObject testPieceObject = Instantiate(testPiece, tiles[randomX, randomY].transform.position, Quaternion.identity);
+            }
             GetAllPieces();
-        }
     }
 
     public void SelectTile(GameObject newSelectedTile)
@@ -50,5 +64,16 @@ public class GameManager : MonoBehaviour
             blackPieces[i] = blackPieceObjects[i].GetComponent<piece>();
             blackPieces[i].indexNumber = i;
         }
+    }
+
+    public void GetAllTiles()
+    {
+         tileObjects = GameObject.FindGameObjectsWithTag("tile");
+        tiles = new GameObject[tileCountX, tileCountY];
+         for(int i = 0; i < tileObjects.Length; i++)
+         {
+            tile currentTile = tileObjects[i].GetComponent<tile>();
+            tiles[(int)currentTile.location.x - 1, (int)currentTile.location.y - 1] = tileObjects[i];
+         }
     }
 }
